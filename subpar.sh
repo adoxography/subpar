@@ -36,9 +36,13 @@ for test in "$TEST_DIR"/*; do
             break
         fi
 
-        # Compare the output of the command to the stored solution, but remove
-        # any lurking carriage returns along the way
-        difference=$(echo "$output" | tr -d '\r' | cmp "$SOLUTION_DIR/$filename" 2>&1)
+        # If the solution file is Unix formatted, ensure that the output
+        # doesn't contain any carriage returns
+        if [[ $(grep -c $'\r' "$SOLUTION_DIR/$filename") -eq 0 ]]; then
+            output=$(echo "$output" | tr -d '\r')
+        fi
+
+        difference=$(echo "$output" | cmp "$SOLUTION_DIR/$filename" 2>&1)
 
         if [[ $difference ]]; then
             echo "failed..."
