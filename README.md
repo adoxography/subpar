@@ -1,4 +1,4 @@
-# subpar
+# [subpar](https://github.com/adoxography/subpar)
 
 ## Requirements
 The only requirement for `subpar` is bash. It is intended to work across all major platforms.
