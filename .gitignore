@@ -1,3 +1,4 @@
+.subparrc
 tests/*
 !tests/.gitkeep
 solutions/*
